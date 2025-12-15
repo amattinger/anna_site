@@ -33,9 +33,6 @@ const { title, description } = Astro.props;
                 if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
                     return localStorage.getItem('theme');
                 }
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    return 'dark';
-                }
                 return 'light';
             })();
             if (theme === 'dark') {
@@ -100,7 +97,11 @@ const { title, description } = Astro.props;
         </main>
 
         <footer class="site-foot">
-            &copy; {new Date().getFullYear()} <a href="/">Clay</a>
+            <div>&copy; {new Date().getFullYear()} <a href="/">Clay</a></div>
+            <div>
+                Powered by <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a> |
+                Licensed under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT</a>
+            </div>
         </footer>
 
         <script>
@@ -289,7 +290,12 @@ const { title, description } = Astro.props;
         text-align: center;
         color: var(--color-base);
         opacity: 0.6;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+
+    .site-foot div {
+        margin: 0.3rem 0;
     }
 
     footer.site-foot a {
