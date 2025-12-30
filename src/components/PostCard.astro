@@ -3,26 +3,33 @@ export interface Props {
   count: number;
   post: any; // using any for now, better to use CollectionEntry
   slug: string;
+  noLink?: boolean; // If true, don't wrap in link and don't show hover labels
 }
 
-const { count, post, slug } = Astro.props;
+const { count, post, slug, noLink = false } = Astro.props;
 const thumbnail = post.data.thumbnail;
 const title = post.data.title;
 const isLarge = count % 3 === 0;
 
 // Construct background image style
 const bgStyle = thumbnail ? `background-image: url(${thumbnail});` : '';
-const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? 'with-image' : 'no-image'} post`;
+const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? 'with-image' : 'no-image'} ${noLink ? 'no-link' : ''} post`;
 ---
 
 <article class={postClass} style={bgStyle}>
-  <a href={`/${slug}`} class="post-card-link">
-    <div class="post-card-content">
-      <h2 class="post-card-title">
-        {title}
-      </h2>
+  {noLink ? (
+    <div class="post-card-wrapper">
+      {thumbnail && <img src={thumbnail} alt={title} class="post-card-image" />}
     </div>
-  </a>
+  ) : (
+    <a href={`/${slug}`} class="post-card-link">
+      <div class="post-card-content">
+        <h2 class="post-card-title">
+          {title}
+        </h2>
+      </div>
+    </a>
+  )}
 </article>
 
 <style>
@@ -41,10 +48,38 @@ const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? '
   border-radius: 12px;
 }
 
+/* No-link mode: show full image, no hover labels */
+.post-card.no-link {
+  background: transparent;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+.post-card.no-link .post-card-wrapper {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.post-card.no-link .post-card-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 0 !important;
+}
+
 @media (max-width: 700px) {
   .post-card {
     flex: 1 1 100%;
     height: 70vw;
+  }
+  
+  .post-card.no-link {
+    height: auto;
   }
 }
 

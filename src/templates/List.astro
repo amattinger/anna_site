@@ -18,7 +18,8 @@ let postCounter = 0;
 ---
 
 <Layout title={title} description={description}>
-    {description && (
+    <div class={baseSlug === 'work' ? 'work-page-wrapper' : ''}>
+    {description && baseSlug !== 'work' && (
       <header class="page-head">
         <h2 class="page-head-title">
           {description}
@@ -29,7 +30,7 @@ let postCounter = 0;
     {/* Content from the index markdown (if any, though legacy work-page didn't show it, only description).
         But generic List might want it. */}
 
-    <div class="post-feed">
+    <div class={`post-feed ${baseSlug === 'work' ? 'post-feed-work' : ''}`}>
         {items.map((post) => {
             postCounter++;
             return (
@@ -37,8 +38,77 @@ let postCounter = 0;
                     count={postCounter}
                     post={post}
                     slug={baseSlug ? `${baseSlug}/${post.slug}` : post.slug}
+                    noLink={baseSlug === 'work'}
                 />
             );
         })}
     </div>
+    </div>
 </Layout>
+
+<style>
+/* Default post-feed layout (flexbox for other pages) */
+.post-feed {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+}
+
+/* Masonry layout for work page using CSS columns */
+.post-feed-work {
+  display: block !important;
+  column-count: 3;
+  column-gap: 1rem;
+  column-fill: balance;
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .post-feed-work {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .post-feed-work {
+    column-count: 1;
+  }
+}
+
+/* Override default post-card styles for work page */
+.post-feed-work .post-card {
+  display: block !important;
+  margin: 0;
+  margin-bottom: 1rem;
+  height: auto;
+  width: 100% !important;
+  max-width: 100%;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* Remove top padding for work page to make it a pure gallery */
+.work-page-wrapper {
+  margin-top: -3rem;
+  padding-top: 0;
+}
+
+/* Ensure images maintain their natural aspect ratio and no rounded corners */
+.post-feed-work .post-card.no-link .post-card-wrapper {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.post-feed-work .post-card.no-link .post-card-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 0 !important;
+}
+</style>
