@@ -1,0 +1,133 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PrivateGate from '../../../components/PrivateGate.astro';
+import { getAncientBlogPosts } from '../../../data/bike-tour-posts';
+import { PRIVATE_PATH_TOKEN } from '../../../lib/private-config';
+
+export function getStaticPaths() {
+  return [{ params: { token: PRIVATE_PATH_TOKEN } }];
+}
+
+const { token } = Astro.params;
+if (token !== PRIVATE_PATH_TOKEN) {
+  return Astro.redirect('/404');
+}
+
+const posts = getAncientBlogPosts();
+---
+
+<Layout title="Ancient Blogs" description="Older blog entries - up through Dec 5, 2014" noindex>
+  <PrivateGate>
+    <div class="blog-page work-page-wrapper">
+      <header class="page-head">
+        <h2 class="page-head-title">Ancient Blogs</h2>
+        <p>Entries up through December 5, 2014</p>
+      </header>
+      <div class="blog-posts">
+        {posts.map((post) => (
+          <article class="blog-post">
+            <header class="blog-post-header">
+              <h3>{post.title}</h3>
+              <time datetime={new Date(post.date).toISOString()}>
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            </header>
+            <div class="blog-post-content" set:html={post.content} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </PrivateGate>
+</Layout>
+
+<style>
+  .blog-page {
+    margin-top: -3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem 4rem;
+  }
+  .blog-page .page-head {
+    padding: 4rem 0 2rem;
+  }
+  .blog-page .page-head p {
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    font-size: 1.6rem;
+  }
+  .blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .blog-post {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4rem;
+  }
+  .blog-post:last-child {
+    border-bottom: none;
+  }
+  .blog-post-header {
+    margin-bottom: 2rem;
+  }
+  .blog-post-header h3 {
+    margin: 0 0 0.5rem;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+  .blog-post-header time {
+    font-size: 1.4rem;
+    opacity: 0.7;
+  }
+  .blog-post-content {
+    font-size: 1.9rem;
+    line-height: 1.65em;
+  }
+  .blog-post-content :global(p) {
+    margin: 0 0 1.5em;
+  }
+  .blog-post-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    border-radius: 0;
+  }
+  /* Captioned images: consecutive figures tile in rows; standalone figures full width */
+  .blog-post-content :global(.blog-caption) {
+    margin: 2rem 0;
+    display: block;
+  }
+  /* Consecutive captions (2+ in a row) → tile side-by-side */
+  .blog-post-content :global(.blog-caption:has(+ .blog-caption)),
+  .blog-post-content :global(.blog-caption + .blog-caption) {
+    display: inline-block;
+    width: calc(50% - 0.25rem);
+    vertical-align: top;
+    margin-right: 0.5rem;
+  }
+  .blog-post-content :global(.blog-caption-text) {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .blog-post-content :global(.blog-caption:has(+ .blog-caption)),
+    .blog-post-content :global(.blog-caption + .blog-caption) {
+      display: block;
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+  .blog-post-content :global(strong) {
+    font-weight: 600;
+  }
+  .blog-post-content :global(em) {
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+/**
+ * Wrapper component for password-protected content.
+ * Shows a password form until correct password is entered, then reveals children.
+ */
+import { PRIVATE_PASSWORD, PRIVATE_STORAGE_KEY } from '../lib/private-config';
+---
+<div id="private-gate" class="private-gate">
+  <div id="private-form" class="private-form">
+    <h2>Members Only</h2>
+    <p>Enter the password to view this content.</p>
+    <form id="private-password-form">
+      <input type="password" id="private-password-input" placeholder="Password" autocomplete="current-password" />
+      <button type="submit">Unlock</button>
+    </form>
+    <p id="private-error" class="private-error" style="display: none;">Incorrect password.</p>
+  </div>
+  <div id="private-content" class="private-content" style="display: none;">
+    <slot />
+  </div>
+</div>
+
+<script define:vars={{ storageKey: PRIVATE_STORAGE_KEY, correctPassword: PRIVATE_PASSWORD }}>
+  function checkAccess() {
+    try {
+      return sessionStorage.getItem(storageKey) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  function grantAccess() {
+    try {
+      sessionStorage.setItem(storageKey, 'true');
+    } catch (e) {}
+  }
+
+  function init() {
+    const form = document.getElementById('private-form');
+    const content = document.getElementById('private-content');
+    const passwordForm = document.getElementById('private-password-form');
+    const passwordInput = document.getElementById('private-password-input');
+    const errorEl = document.getElementById('private-error');
+
+    if (checkAccess()) {
+      if (form) form.style.display = 'none';
+      if (content) content.style.display = 'block';
+      return;
+    }
+
+    if (passwordForm && passwordInput) {
+      passwordForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (passwordInput.value === correctPassword) {
+          grantAccess();
+          if (form) form.style.display = 'none';
+          if (content) content.style.display = 'block';
+          if (errorEl) errorEl.style.display = 'none';
+        } else {
+          if (errorEl) {
+            errorEl.style.display = 'block';
+            errorEl.textContent = 'Incorrect password. Please try again.';
+          }
+        }
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', init);
+  init();
+</script>
+
+<style>
+  .private-gate {
+    min-height: 50vh;
+  }
+  .private-form {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  .private-form h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .private-form p {
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  .private-form input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: var(--color-bg);
+    color: var(--color-base);
+  }
+  .private-form button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    background: var(--color-base);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .private-form button:hover {
+    opacity: 0.9;
+  }
+  .private-error {
+    color: #c44;
+    margin-top: 1rem;
+  }
+</style>

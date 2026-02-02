@@ -1,0 +1,68 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PrivateGate from '../../../components/PrivateGate.astro';
+import { PRIVATE_PATH_TOKEN } from '../../../lib/private-config';
+
+export function getStaticPaths() {
+  return [{ params: { token: PRIVATE_PATH_TOKEN } }];
+}
+
+const { token } = Astro.params;
+if (token !== PRIVATE_PATH_TOKEN) {
+  return Astro.redirect('/404');
+}
+const base = `/private/${token}`;
+---
+
+<Layout title="Private" description="Members-only content" noindex>
+  <PrivateGate>
+    <div class="private-links">
+      <h1>Members</h1>
+      <p>Select a section to view:</p>
+      <nav class="private-nav">
+        <a href={`${base}/modeling`}>Modeling</a>
+        <a href={`${base}/ancient-blogs`}>Ancient Blogs</a>
+        <a href={`${base}/bike-tour-2015`}>2015 Bike Tour</a>
+      </nav>
+    </div>
+  </PrivateGate>
+</Layout>
+
+<style>
+  .private-links {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  .private-links h1 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+  }
+  .private-links p {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+  .private-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .private-nav a {
+    display: block;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    font-family: var(--font-sans-serif);
+    font-variant: small-caps;
+    color: var(--color-base);
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    min-width: 200px;
+  }
+  .private-nav a:hover {
+    background: var(--color-border);
+    border-color: var(--color-base);
+  }
+</style>

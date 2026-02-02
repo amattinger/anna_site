@@ -11,9 +11,10 @@ export interface Props {
     title?: string;
     description?: string;
     children?: any;
+    noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,6 +25,7 @@ const { title, description } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        {noindex && <meta name="robots" content="noindex, nofollow" />}
         <title>{title || "Clay"}</title>
         <ClientRouter />
         <script is:inline>

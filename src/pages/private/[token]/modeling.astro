@@ -1,0 +1,60 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PrivateGate from '../../../components/PrivateGate.astro';
+import { PRIVATE_PATH_TOKEN } from '../../../lib/private-config';
+
+export function getStaticPaths() {
+  return [{ params: { token: PRIVATE_PATH_TOKEN } }];
+}
+
+const { token } = Astro.params;
+if (token !== PRIVATE_PATH_TOKEN) {
+  return Astro.redirect('/404');
+}
+
+import modelingImages from '../../../data/modeling-images.json';
+---
+
+<Layout title="Modeling" description="Modeling portfolio" noindex>
+  <PrivateGate>
+    <div class="modeling-gallery work-page-wrapper">
+      <div class="post-feed post-feed-work">
+        {modelingImages.map((img: { src: string; alt: string }) => (
+          <article class="post-card no-link post">
+            <div class="post-card-wrapper">
+              <img src={img.src} alt={img.alt} class="post-card-image" />
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </PrivateGate>
+</Layout>
+
+<style>
+  .modeling-gallery {
+    margin-top: -3rem;
+    width: 100%;
+  }
+  .modeling-gallery .post-feed-work {
+    column-count: 3;
+    column-gap: 1rem;
+  }
+  @media (max-width: 900px) {
+    .modeling-gallery .post-feed-work {
+      column-count: 2;
+    }
+  }
+  @media (max-width: 600px) {
+    .modeling-gallery .post-feed-work {
+      column-count: 1;
+    }
+  }
+  .modeling-gallery .post-card .post-card-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+  }
+</style>
