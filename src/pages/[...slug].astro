@@ -8,39 +8,22 @@ import List from "../templates/List.astro";
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
 
-  // Pre-fetch other collections for index pages
-  const newsEntries = await getCollection("news");
   const workEntries = await getCollection("work");
-  const soldEntries = await getCollection("sold");
-
-  // Combine types for sorting and lists
-  type SortableEntry = CollectionEntry<"news" | "work" | "sold">;
-
-  // Sort them
+  type SortableEntry = CollectionEntry<"work">;
   const sortDate = (a: SortableEntry, b: SortableEntry) =>
     new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime();
-  const sortedNews = newsEntries.sort(sortDate);
   const sortedWork = workEntries.sort(sortDate);
-  const sortedSold = soldEntries.sort(sortDate);
 
   return pages
-    .filter((entry) => entry.slug !== "index")
+    .filter((entry) => entry.slug !== "index" && entry.slug !== "news" && entry.slug !== "sold")
     .map((entry) => {
-      // Determine props based on templateKey
       let props = { entry };
       let items: SortableEntry[] = [];
       let baseSlug = "";
 
-      if (entry.data.templateKey === "news-page") {
-        items = sortedNews;
-        baseSlug = "news";
-      } else if (entry.data.templateKey === "work-page") {
+      if (entry.data.templateKey === "work-page") {
         items = sortedWork;
         baseSlug = "work";
-      } else if (entry.data.templateKey === "exhibitions-page") {
-        // maps to sold collection
-        items = sortedSold;
-        baseSlug = "sold";
       }
 
       return {
@@ -64,9 +47,7 @@ const templateKey = entry.data.templateKey;
 {
   templateKey === "contact-page" ? (
     <Contact entry={entry} />
-  ) : templateKey === "news-page" ||
-    templateKey === "work-page" ||
-    templateKey === "exhibitions-page" ? (
+  ) : templateKey === "work-page" ? (
     <List entry={entry} items={items} baseSlug={baseSlug} />
   ) : (
     <Page entry={entry} />

@@ -3,18 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-// Fetch all collections
+// Fetch collections used on homepage (News and Sold removed from site)
 const allPages = await getCollection('pages');
-const allNews = await getCollection('news');
 const allWork = await getCollection('work');
-const allSold = await getCollection('sold');
+const allContent = [...allPages, ...allWork];
 
-// Combine for filtering
-const allContent = [...allPages, ...allNews, ...allWork, ...allSold];
-
-// Filter for pagetype containing 'main' and sort by number
+// Filter for pagetype containing 'main', exclude Sold and News pages/collections, and sort by number
 const posts = allContent.filter(item => {
-    return item.data.pagetype && item.data.pagetype.includes('main');
+    if (!item.data.pagetype || !item.data.pagetype.includes('main')) return false;
+    if (item.collection === 'sold') return false;
+    if (item.collection === 'news') return false;
+    if (item.collection === 'pages' && (item.slug === 'sold' || item.slug === 'news')) return false;
+    return true;
 }).sort((a, b) => {
     const numA = a.data.number || 9999;
     const numB = b.data.number || 9999;
@@ -23,7 +23,7 @@ const posts = allContent.filter(item => {
 
 // Get index-page metadata (from pages collection)
 const indexPage = allPages.find(p => p.slug === 'index');
-const title = indexPage?.data.title || 'Clay';
+const title = indexPage?.data.title || 'Anna Mattinger';
 const description = indexPage?.data.description;
 
 let postCounter = 0;
@@ -42,11 +42,11 @@ let postCounter = 0;
 
             let slug = post.slug;
             if (post.collection === 'work') slug = `work/${post.slug}`;
-            if (post.collection === 'news') slug = `news/${post.slug}`;
-            if (post.collection === 'sold') slug = `sold/${post.slug}`;
-            // Pages collection: 'bio' -> 'bio'.
+            // News and Sold removed from site; pages collection: 'bio', 'contact' -> /bio, /contact
 
-            // Wait, legacy slug split logic:
+            const imagePosition = post.slug === 'bio' ? 'top' : undefined;
+
+            // Legacy slug split logic:
             // src/pages/bio/index.md -> /bio.
             // content/work/work-1.md -> /work/work-1.
 
@@ -55,6 +55,7 @@ let postCounter = 0;
                     count={postCounter}
                     post={post}
                     slug={slug}
+                    imagePosition={imagePosition}
                 />
             );
         })}
