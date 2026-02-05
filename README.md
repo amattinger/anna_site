@@ -136,6 +136,39 @@ Edit `src/styles/vars.css` to update CSS variables for colors, fonts, and breakp
 - **Option 1**: Add markdown files directly to `src/content/` folders
 - **Option 2**: Use the Admin panel at `/admin` (requires local backend or Netlify deployment)
 
+### Bio (and other pages) not updating in the CMS preview?
+
+1. Run the dev server: `npm run dev`.
+2. Open the CMS at **http://localhost:4321/admin** (same origin as the site).
+3. Edit Bio (or any page) and save. The preview iframe will show your local site; refresh the preview (e.g. Cmd+Shift+R) if it doesn’t update.
+4. If you use the admin on a different URL (e.g. production), the preview will load that URL, so you won’t see local edits until you deploy.
+
+### Live site (e.g. annamattinger.com) not showing Bio or other page updates?
+
+The live site can show old content when the CDN or browser has cached the page.
+
+1. **Hard-refresh the page**: On the Bio page, use **Cmd+Shift+R** (Mac) or **Ctrl+Shift+R** (Windows/Linux) to bypass browser cache.
+2. **Clear Netlify cache and redeploy**: In the [Netlify dashboard](https://app.netlify.com) → your site → **Deploys** → **Trigger deploy** → **Clear cache and deploy site**. That rebuilds and serves the latest content.
+3. **Next time**: The repo includes `netlify.toml` with cache headers so HTML (including `/bio`) is revalidated; after you deploy that file, future content updates should appear without a full cache clear.
+
+### Images and renaming
+
+Images live in `public/img/`. Content (markdown frontmatter and body) references them by path, e.g. `/img/clay-image-1.jpg`.
+
+- **If you rename or move a file in `public/img/`**, update every reference to the old path in:
+  - `src/content/pages/*.md` (frontmatter: `thumbnail`, `featuredimage`, `image`; body: `![alt](/img/...)`)
+  - `src/content/news/*.md`, `src/content/work/*.md`, `src/content/sold/*.md`
+- **To find references**: search for the old filename (e.g. `clay-image-1.jpg`) across `src/content` and update to the new path.
+- **Case matters** on Linux and many hosts: `Photo.jpg` and `photo.jpg` are different. Keep paths exactly matching the file name.
+
+### Photography-all and the Work page
+
+The **Work** page is built from `src/content/work/*.md` and images in **`public/img/`**. The `photography-all/` folder (images and markdown) is **not** used by the site at build time.
+
+- Renaming or adding files in `photography-all/images/` does **not** change the Work page until you update the site’s content and assets.
+- To keep Work in sync when you rename in photography-all: (1) copy the renamed file into `public/img/` with the new name, (2) update the `thumbnail` (and any image paths) in the corresponding `src/content/work/*.md` file to the new path (e.g. `/img/NewFilename.jpg`). Match by which work entry should show that image.
+- If you use a script to generate Work content from photography-all, have it use a stable identifier (e.g. slug or list order), not the image filename, so renaming the file doesn’t break the link between content and image.
+
 ### Navigation
 
 Edit the `<nav>` section in `src/layouts/Layout.astro` to customize menu links.

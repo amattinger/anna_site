@@ -1,28 +1,27 @@
 ---
 templateKey: bio-page
-thumbnail: /img/clay-image-1.jpg
+thumbnail: /img/SelfTdaddyGlass.jpg
 date: 2023-03-02T10:17:05.133Z
 title: Bio
 description: About the Artist
 number: 1
 pagetype:
   - main
-featuredimage: /img/clay-image-1.jpg
+featuredimage: /img/SelfTdaddyGlass.jpg
 ---
-![Artist at work](/img/clay-images-11.jpg)
 
-## The Hands Behind the Clay
+All the major threads of my life have traced an odyssean circle.
 
-I am a ceramic artist based in the Pacific Northwest, where the rugged coastline and dense forests inspire my work. My journey with clay began over a decade ago, first as a meditative practice and later as a lifelong obsession with form and fire.
+In my teens, drawn to physics, anthropology, linguistics, and so on—stunted, upon graduation, by the paradox of choice—I decided to take six months to clear my head in the backcountry of Kings Canyon National Park, building segments of the Pacific Crest Trail at 13,000 feet. After that, I figured, I'd think about a vocation.
 
-I work primarily with stoneware and porcelain, utilizing both wheel-throwing and hand-building techniques. My philosophy is rooted in wabi-sabi—finding beauty in the imperfect, the impermanent, and the incomplete.
+That six months turned into a decade.
 
-![Studio shelves](/img/clay-images-12.jpg)
+I freelanced my way around the world. I'd do seasonal gigs [as a ski instructor, bodyworker, farmhand, pyrotechnician, drystone mason] and one-offs [as a tech evangelist, beet piler, writer, heavy machinery operator]—but modeling was my mainstay.
 
-### Process & Materials
+Once or twice a year, I'd plan a whirlwind tour where, for a few months, I'd get all my solitude and much of my sleep in airports and train stations. I posed atop double-decker buses in Hong Kong, in ornate bat-infested ruins outside Havana, in the waves near Hobart. From the other side of the lens, I watched the creative processes of thousands of photographers, honing my aesthetic discernment over time.
 
-Every piece is crafted in my home studio. I formulate my own glazes using locally sourced ash and minerals, resulting in surfaces that are unique to my environment. The firing process is a collaboration with the kiln; I can guide the heat, but the flame has the final say.
+Eventually I circled back to formal study, enrolling in online community college STEM courses before transferring to Stanford to study Computer Science. But while interviewing for tech jobs as a new grad, a friend asked me to photograph her maternity session. That job—the before, during, and after; the logistics, the dynamism, the experimentation, the celebratory intimacy—felt alive and fulfilling in a way few things have.
 
-When I am not in the studio, you can find me hiking the trails of the Cascades or scouring the beach for interesting stones and driftwood.
+Before that shoot, I'd always assumed I love photography too much to risk doing it for money. Turns out I love it too much not to.
 
-<a href="https://unsplash.com/@tomcrewceramics" target="_blank">Image credits - Tom Crew</a>
+Drawn to the luxuriantly feral, experiential, conceptual, and human. Based in San Francisco; available for projects worldwide.

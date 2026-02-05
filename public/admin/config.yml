@@ -12,6 +12,11 @@ local_backend: true
 media_folder: public/img
 public_folder: /img
 
+# Preview: To see content (e.g. Bio) update in the CMS preview pane:
+# 1. Run "npm run dev" so the site is at http://localhost:4321
+# 2. Open the CMS at http://localhost:4321/admin (same origin = preview uses your local content)
+# 3. Edit and save; the preview iframe will show your local site. Hard-refresh (Cmd+Shift+R) if needed.
+
 collections:
   - name: "blog"
     label: "News"
@@ -146,6 +151,7 @@ collections:
       - file: "src/content/pages/bio.md"
         label: "Bio"
         name: "bio"
+        preview_path: "bio"
         fields:
           - {
               label: "Template Key",
