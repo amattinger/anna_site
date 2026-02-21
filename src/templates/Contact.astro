@@ -11,8 +11,7 @@ const { Content } = await entry.render();
 
 const { title, description, thumbnail, featuredimage } = entry.data;
 
-// Porting the form HTML.
-// Using standard Netlify form submission (no JS hijack required for basic functionality).
+// Contact form submits to Formspree; emails go to photography@annamattinger.com. Replace YOUR_FORMSPREE_FORM_ID in the form action with your Formspree form ID.
 ---
 
 <Layout title={title} description={description}>
@@ -27,45 +26,86 @@ const { title, description, thumbnail, featuredimage } = entry.data;
     <div class="post-content-body">
       <Content />
 
-      <h3 id="forms">Form</h3>
-      <form name="contact" method="POST" data-netlify="true" action="/contact/thanks">
-        <input type="hidden" name="form-name" value="contact" />
+      <h3 id="forms">Get in touch</h3>
+      {/* Form submissions go to photography@annamattinger.com via Formspree. Replace YOUR_FORMSPREE_FORM_ID with your form ID from formspree.io (create a form and set email to photography@annamattinger.com). */}
+      <form
+        name="contact"
+        method="POST"
+        action="https://formspree.io/f/meelrjjz"
+      >
+        <input type="hidden" name="_next" value={`${Astro.url.origin}/contact/thanks`} />
+        <input type="hidden" name="_subject" value="New message from annamattinger.com contact form" />
         <p hidden>
-           <label>Don’t fill this out: <input name="bot-field" /></label>
+           <label>Don’t fill this out: <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
         </p>
 
         <div class="row gtr-uniform">
-          <div class="col-6 col-12-xsmall">
-            <input type="text" name="first-name" id="first-name" placeholder="First Name" required />
-          </div>
-          <div class="col-6 col-12-xsmall">
-            <input type="text" name="last-name" id="last-name" placeholder="Last Name" required />
+          <div class="col-12">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Your name" required />
           </div>
 
           <div class="col-6 col-12-xsmall">
-            <input type="email" name="email" id="demo-email" placeholder="Email" required />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="your@email.com" required />
           </div>
           <div class="col-6 col-12-xsmall">
-            <input type="text" name="location" id="location" placeholder="Location" required />
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" placeholder="Phone number" />
           </div>
 
           <div class="col-12">
-            <select name="category" id="category" required>
-              <option value="">-Nature of Enquiry-</option>
-              <option value="General">General</option>
-              <option value="Purchase">Purchase</option>
-              <option value="Commissions">Commissions</option>
-              <option value="Exhibitions">Exhibitions</option>
-              <option value="Gallery Feature">Gallery Feature</option>
-              <option value="Other">Other</option>
-            </select>
+            <span class="label-block">What are you interested in?</span>
+            <div class="checkbox-group">
+              <span class="checkbox-item">
+                <input type="checkbox" name="interests" id="interest-boudoir" value="Boudoir" />
+                <label for="interest-boudoir">Boudoir</label>
+              </span>
+              <span class="checkbox-item">
+                <input type="checkbox" name="interests" id="interest-maternity" value="Maternity" />
+                <label for="interest-maternity">Maternity</label>
+              </span>
+              <span class="checkbox-item">
+                <input type="checkbox" name="interests" id="interest-couple" value="Couple" />
+                <label for="interest-couple">Couple</label>
+              </span>
+              <span class="checkbox-item">
+                <input type="checkbox" name="interests" id="interest-portrait" value="Portrait" />
+                <label for="interest-portrait">Portrait</label>
+              </span>
+              <span class="checkbox-item">
+                <input type="checkbox" name="interests" id="interest-other" value="Other" />
+                <label for="interest-other">Other</label>
+              </span>
+            </div>
           </div>
 
           <div class="col-12">
-            <textarea name="message" id="message" placeholder="Enter your message" rows="6" required></textarea>
+            <label for="message">Tell me a little bit about what you have in mind</label>
+            <textarea name="message" id="message" placeholder="Share your ideas, questions, or what you're looking for..." rows="6"></textarea>
           </div>
 
-          <div data-netlify-recaptcha="true"></div>
+          <div class="col-12">
+            <span class="label-block">Approximate timeframe <span class="required">(choose one)</span></span>
+            <div class="radio-group">
+              <span class="radio-item">
+                <input type="radio" name="timeframe" id="timeframe-month" value="within a month" required />
+                <label for="timeframe-month">Within a month</label>
+              </span>
+              <span class="radio-item">
+                <input type="radio" name="timeframe" id="timeframe-1-3" value="1-3 months" />
+                <label for="timeframe-1-3">1–3 months</label>
+              </span>
+              <span class="radio-item">
+                <input type="radio" name="timeframe" id="timeframe-3-12" value="3-12 months" />
+                <label for="timeframe-3-12">3–12 months</label>
+              </span>
+              <span class="radio-item">
+                <input type="radio" name="timeframe" id="timeframe-exploring" value="just exploring" />
+                <label for="timeframe-exploring">Just exploring</label>
+              </span>
+            </div>
+          </div>
 
           <div class="col-12">
             <ul class="actions">
@@ -96,5 +136,56 @@ const { title, description, thumbnail, featuredimage } = entry.data;
   .contact-images img {
     max-width: calc(50% - 0.5rem);
   }
+}
+
+/* Typed text in inputs/textarea: black so it's readable */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  color: #131313;
+}
+[data-theme="dark"] .contact-form input[type="text"],
+[data-theme="dark"] .contact-form input[type="email"],
+[data-theme="dark"] .contact-form input[type="tel"],
+[data-theme="dark"] .contact-form textarea {
+  color: #e0e0e0;
+}
+
+/* Labels: template font (EB Garamond) and light blue color */
+.contact-form label,
+.contact-form .label-block {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+}
+.contact-form .label-block {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-bold);
+}
+.contact-form .label-block .required {
+  font-weight: var(--font-normal);
+  color: inherit;
+}
+
+/* Checkbox/radio: wrap each option so label text shows next to the box */
+.checkbox-group,
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.25rem;
+}
+.contact-form .checkbox-item,
+.contact-form .radio-item {
+  display: flex;
+  align-items: center;
+}
+.contact-form .checkbox-item input + label,
+.contact-form .radio-item input + label {
+  margin-right: 0;
+  padding-left: calc((var(--height) * 0.6) + 0.75em);
+  color: var(--color-base);
+  font-family: var(--font-serif);
 }
 </style>

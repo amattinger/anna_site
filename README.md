@@ -136,6 +136,17 @@ Edit `src/styles/vars.css` to update CSS variables for colors, fonts, and breakp
 - **Option 1**: Add markdown files directly to `src/content/` folders
 - **Option 2**: Use the Admin panel at `/admin` (requires local backend or Netlify deployment)
 
+### Contact form (submissions to photography@annamattinger.com)
+
+The Contact page form posts to [Formspree](https://formspree.io). To enable delivery to **photography@annamattinger.com**:
+
+1. Sign up at [formspree.io](https://formspree.io) and create a new form.
+2. Set the form’s email to **photography@annamattinger.com**.
+3. Copy your form ID from the Formspree dashboard (it’s in the form endpoint URL, e.g. `https://formspree.io/f/xyzabc` → `xyzabc`).
+4. In `src/templates/Contact.astro`, replace **YOUR_FORMSPREE_FORM_ID** in the form `action` with your form ID.
+
+After deploy, submissions will go to your email and the user will be redirected to `/contact/thanks`.
+
 ### Bio (and other pages) not updating in the CMS preview?
 
 1. Run the dev server: `npm run dev`.
