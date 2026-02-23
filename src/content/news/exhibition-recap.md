@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-thumbnail: /img/clay-images-2.jpg
+thumbnail: /img/SelfTdaddyGlass.jpg
 date: 2023-01-05T15:04:10.000Z
 title: Exhibition Recap
 description: Reflections on the "Earth & Fire" show.

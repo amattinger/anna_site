@@ -18,8 +18,16 @@ const { title, description, thumbnail, featuredimage } = entry.data;
   <article class="contact-form page-template">
     {(thumbnail || featuredimage) && (
       <div class="post-content-image contact-images">
-        {thumbnail && <img src={thumbnail} class="kg-image" alt={title} />}
-        {featuredimage && <img src={featuredimage} class="kg-image" alt={title} />}
+        {thumbnail && (
+          <div class="contact-image-wrap">
+            <img src={thumbnail} class="kg-image contact-image-thumb" alt={title} />
+          </div>
+        )}
+        {featuredimage && (
+          <div class="contact-image-wrap">
+            <img src={featuredimage} class="kg-image contact-image-featured" alt={title} />
+          </div>
+        )}
       </div>
     )}
 
@@ -34,7 +42,7 @@ const { title, description, thumbnail, featuredimage } = entry.data;
         action="https://formspree.io/f/meelrjjz"
       >
         <input type="hidden" name="_next" value={`${Astro.url.origin}/contact/thanks`} />
-        <input type="hidden" name="_subject" value="New message from annamattinger.com contact form" />
+        <input type="hidden" name="_subject" value="New message from Photography contact form" />
         <p hidden>
            <label>Don’t fill this out: <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
         </p>
@@ -55,7 +63,7 @@ const { title, description, thumbnail, featuredimage } = entry.data;
           </div>
 
           <div class="col-12">
-            <span class="label-block">What are you interested in?</span>
+            <span class="label-block">What are you interested in? (choose as many as you'd like)</span>
             <div class="checkbox-group">
               <span class="checkbox-item">
                 <input type="checkbox" name="interests" id="interest-boudoir" value="Boudoir" />
@@ -119,73 +127,3 @@ const { title, description, thumbnail, featuredimage } = entry.data;
     </div>
   </article>
 </Layout>
-
-<style>
-.contact-images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-.contact-images img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-@media (min-width: 600px) {
-  .contact-images img {
-    max-width: calc(50% - 0.5rem);
-  }
-}
-
-/* Typed text in inputs/textarea: black so it's readable */
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"],
-.contact-form textarea {
-  color: #131313;
-}
-[data-theme="dark"] .contact-form input[type="text"],
-[data-theme="dark"] .contact-form input[type="email"],
-[data-theme="dark"] .contact-form input[type="tel"],
-[data-theme="dark"] .contact-form textarea {
-  color: #e0e0e0;
-}
-
-/* Labels: template font (EB Garamond) and light blue color */
-.contact-form label,
-.contact-form .label-block {
-  font-family: var(--font-serif);
-  color: var(--color-primary);
-}
-.contact-form .label-block {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: var(--font-bold);
-}
-.contact-form .label-block .required {
-  font-weight: var(--font-normal);
-  color: inherit;
-}
-
-/* Checkbox/radio: wrap each option so label text shows next to the box */
-.checkbox-group,
-.radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
-  margin-top: 0.25rem;
-}
-.contact-form .checkbox-item,
-.contact-form .radio-item {
-  display: flex;
-  align-items: center;
-}
-.contact-form .checkbox-item input + label,
-.contact-form .radio-item input + label {
-  margin-right: 0;
-  padding-left: calc((var(--height) * 0.6) + 0.75em);
-  color: var(--color-base);
-  font-family: var(--font-serif);
-}
-</style>

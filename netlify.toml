@@ -1,0 +1,18 @@
+# Netlify config for annamattinger.com
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+# Prevent CDN from caching HTML for long so content updates (e.g. Bio) show immediately
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/bio"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/bio/"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"

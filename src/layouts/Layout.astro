@@ -37,7 +37,7 @@ const { title, description, noindex } = Astro.props;
                 ) {
                     return localStorage.getItem("theme");
                 }
-                return "light";
+                return "dark";
             })();
             if (theme === "dark") {
                 document.documentElement.setAttribute("data-theme", "dark");

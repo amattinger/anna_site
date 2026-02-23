@@ -1,6 +1,6 @@
 ---
 templateKey: exhibitions-sub-page
-thumbnail: /img/clay-image-1.jpg
+thumbnail: /img/SelfTdaddyGlass.jpg
 date: 2023-01-08T15:04:10.000Z
 title: London Gallery Sale
 description: Acquisition of the 'Blue Series' by Modern Art London.

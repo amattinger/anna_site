@@ -172,13 +172,42 @@ Images live in `public/img/`. Content (markdown frontmatter and body) references
 - **To find references**: search for the old filename (e.g. `clay-image-1.jpg`) across `src/content` and update to the new path.
 - **Case matters** on Linux and many hosts: `Photo.jpg` and `photo.jpg` are different. Keep paths exactly matching the file name.
 
-### Photography-all and the Work page
+### Work page images: single source of truth
 
-The **Work** page is built from `src/content/work/*.md` and images in **`public/img/`**. The `photography-all/` folder (images and markdown) is **not** used by the site at build time.
+The **Work** page uses exactly one place for images: **`public/img/`**. Every work entry in `src/content/work/*.md` points to a file there (e.g. `thumbnail: /img/MyPhoto.jpg`). There are no other image folders used by the site.
 
-- Renaming or adding files in `photography-all/images/` does **not** change the Work page until you update the site’s content and assets.
-- To keep Work in sync when you rename in photography-all: (1) copy the renamed file into `public/img/` with the new name, (2) update the `thumbnail` (and any image paths) in the corresponding `src/content/work/*.md` file to the new path (e.g. `/img/NewFilename.jpg`). Match by which work entry should show that image.
-- If you use a script to generate Work content from photography-all, have it use a stable identifier (e.g. slug or list order), not the image filename, so renaming the file doesn’t break the link between content and image.
+### Adding new images to the Work page
+
+1. **Put the image file in `public/img/`**  
+   Copy your image from your computer into `anna_site/public/img/` (e.g. `public/img/ErinDoloresDaisy.jpg`). Use a clear filename; avoid spaces (use hyphens or underscores).
+
+2. **Create a work entry**  
+   Add a new file in `src/content/work/` with a URL-friendly name (e.g. `erin-dolores-daisy.md`). Match the pattern of existing entries:
+
+   ```yaml
+   ---
+   templateKey: work-sub-page
+   thumbnail: /img/ErinDoloresDaisy.jpg
+   date: 2025-02-23
+   title: Erin Dolores Daisy
+   description: Short description for the piece.
+   ---
+   ```
+
+   The filename of the `.md` file becomes the URL slug (e.g. `erin-dolores-daisy` → `/work/erin-dolores-daisy`).
+
+3. **Add the slug to the Work order list**  
+   Edit **`src/data/work-order.ts`** and add the new slug (e.g. `'erin-dolores-daisy'`) in the position where you want it on the Work page. If you don’t add it, the new piece won’t appear on the Work page.
+
+4. **Deploy**  
+   Commit the new image, the new `.md` file, and the updated `work-order.ts`, then push.
+
+### Reordering or hiding Work page photos
+
+Edit **`src/data/work-order.ts`**. The `WORK_ORDER` array lists work slugs in the order they appear on the Work page (first = top).
+
+- **Reorder:** Move slugs up or down in the array.
+- **Hide a photo:** Remove its slug from the array (the `.md` file can stay; it just won’t be shown on the Work list).
 
 ### Navigation
 

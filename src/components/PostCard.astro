@@ -4,7 +4,7 @@ export interface Props {
   post: any; // using any for now, better to use CollectionEntry
   slug: string;
   noLink?: boolean; // If true, don't wrap in link and don't show hover labels
-  imagePosition?: 'top' | 'center'; // 'top' shows top of image (e.g. for Bio portrait)
+  imagePosition?: string; // CSS background-position, e.g. 'top', 'center 38%', 'top 35%'
 }
 
 const { count, post, slug, noLink = false, imagePosition } = Astro.props;
@@ -12,9 +12,11 @@ const thumbnail = post.data.thumbnail;
 const title = post.data.title;
 const isLarge = count % 3 === 0;
 
-// Construct background image style (imagePosition 'top' shows top of image, e.g. eye)
+const positionStyle = imagePosition
+  ? ` background-position: ${imagePosition}; background-size: cover;`
+  : '';
 const bgStyle = thumbnail
-  ? `background-image: url(${thumbnail});${imagePosition === 'top' ? ' background-position: top center; background-size: cover;' : ''}`
+  ? `background-image: url(${thumbnail});${positionStyle}`
   : '';
 const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? 'with-image' : 'no-image'} ${noLink ? 'no-link' : ''} post`;
 ---

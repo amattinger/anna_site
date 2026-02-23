@@ -349,3 +349,161 @@ production stylesheet in assets/built/screen.css using gulp dev
 img.gatsby-resp-image-image { border-radius: 10px !important;}
 
 img {border-radius: 10px;}
+
+/* Contact page – images and form (global so they apply with View Transitions)
+/* ---------------------------------------------------------- */
+
+/* Contact images: same dimensions, no vertical crop, no squishing. First image sets height; second fills same box with horizontal crop only (more from right). */
+.contact-form .contact-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.contact-form .contact-image-wrap {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.contact-form .contact-image-wrap:first-child {
+  display: block;
+}
+@media (min-width: 600px) {
+  .contact-form .contact-image-wrap {
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+  }
+}
+/* First image (Monica): full width and natural height, no crop, no squish — sets the row height */
+.contact-form .contact-image-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+/* Second image (Ingrid): fill same-size box; crop horizontally only (more from right than left), no squish */
+.contact-form .contact-image-wrap:has(.contact-image-featured) {
+  display: flex;
+  align-items: stretch;
+}
+.contact-form .contact-image-featured {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 32% center;
+}
+
+/* Contact form dark mode: light–medium gray (slightly lighter than before), no white */
+[data-theme="dark"] .contact-form input[type="text"],
+[data-theme="dark"] .contact-form input[type="email"],
+[data-theme="dark"] .contact-form input[type="tel"],
+[data-theme="dark"] .contact-form textarea,
+[data-theme="dark"] .contact-form select {
+  background: #a0a0a0;
+  border-color: #a0a0a0;
+}
+[data-theme="dark"] .contact-form .checkbox-item input + label:before,
+[data-theme="dark"] .contact-form .radio-item input + label:before {
+  background: #a0a0a0;
+  border-color: #a0a0a0;
+}
+[data-theme="dark"] .contact-form .checkbox-item input:checked + label:before,
+[data-theme="dark"] .contact-form .radio-item input:checked + label:before {
+  background: #a0a0a0;
+  border-color: #a0a0a0;
+  color: #131313;
+}
+[data-theme="dark"] .contact-form input[type="submit"].primary {
+  background: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+  color: #131313 !important;
+}
+[data-theme="dark"] .contact-form input[type="submit"].primary:hover {
+  background: #b0b0b0 !important;
+  border-color: #b0b0b0 !important;
+  color: #131313 !important;
+}
+[data-theme="dark"] .contact-form input::placeholder,
+[data-theme="dark"] .contact-form textarea::placeholder {
+  color: #6a6a6a;
+}
+[data-theme="dark"] .contact-form input:focus,
+[data-theme="dark"] .contact-form textarea:focus {
+  border-color: #a0a0a0;
+  box-shadow: 0 0 0 1px #a0a0a0;
+}
+[data-theme="dark"] .contact-form .checkbox-item input:focus + label:before,
+[data-theme="dark"] .contact-form .radio-item input:focus + label:before {
+  border-color: #a0a0a0;
+  box-shadow: 0 0 0 1px #a0a0a0;
+}
+[data-theme="dark"] .contact-form input:-webkit-autofill,
+[data-theme="dark"] .contact-form textarea:-webkit-autofill {
+  -webkit-text-fill-color: #e0e0e0;
+  -webkit-box-shadow: 0 0 0 1000px #a0a0a0 inset;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  color: #131313;
+}
+[data-theme="dark"] .contact-form input[type="text"],
+[data-theme="dark"] .contact-form input[type="email"],
+[data-theme="dark"] .contact-form input[type="tel"],
+[data-theme="dark"] .contact-form textarea {
+  color: #e0e0e0;
+}
+/* Contact page text: visible in both themes — light mode dark text, dark mode very light gray */
+.contact-form .post-content-body,
+.contact-form .post-content-body p,
+.contact-form .post-content-body h1,
+.contact-form .post-content-body h2,
+.contact-form .post-content-body h3,
+.contact-form label,
+.contact-form .label-block {
+  font-family: var(--font-serif);
+  color: #131313;
+}
+[data-theme="dark"] .contact-form .post-content-body,
+[data-theme="dark"] .contact-form .post-content-body p,
+[data-theme="dark"] .contact-form .post-content-body h1,
+[data-theme="dark"] .contact-form .post-content-body h2,
+[data-theme="dark"] .contact-form .post-content-body h3,
+[data-theme="dark"] .contact-form label,
+[data-theme="dark"] .contact-form .label-block {
+  color: #e0e0e0;
+}
+.contact-form .label-block {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-bold);
+}
+.contact-form .label-block .required {
+  font-weight: var(--font-normal);
+  color: inherit;
+}
+.contact-form .checkbox-group,
+.contact-form .radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.25rem;
+}
+.contact-form .checkbox-item,
+.contact-form .radio-item {
+  display: flex;
+  align-items: center;
+}
+.contact-form .checkbox-item input + label,
+.contact-form .radio-item input + label {
+  margin-right: 0;
+  padding-left: calc((var(--height) * 0.6) + 0.75em);
+  color: #131313;
+  font-family: var(--font-serif);
+}
+[data-theme="dark"] .contact-form .checkbox-item input + label,
+[data-theme="dark"] .contact-form .radio-item input + label {
+  color: #e0e0e0;
+}

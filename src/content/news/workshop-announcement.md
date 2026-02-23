@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-thumbnail: /img/clay-images-4.jpg
+thumbnail: /img/SelfTdaddyGlass.jpg
 date: 2023-01-06T15:04:10.000Z
 title: Workshop Announcement
 description: Join us for a weekend of wheel throwing.

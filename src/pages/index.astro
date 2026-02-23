@@ -44,7 +44,15 @@ let postCounter = 0;
             if (post.collection === 'work') slug = `work/${post.slug}`;
             // News and Sold removed from site; pages collection: 'bio', 'contact' -> /bio, /contact
 
-            const imagePosition = post.slug === 'bio' ? 'top' : undefined;
+            // Banner crop: bio = eye centered vertically; work = Adam eye; contact = eyes higher
+            const imagePosition =
+              post.slug === 'bio'
+                ? 'center 28%'
+                : post.slug === 'work'
+                  ? 'center 35%'
+                  : post.slug === 'contact'
+                    ? 'center 22%'
+                    : undefined;
 
             // Legacy slug split logic:
             // src/pages/bio/index.md -> /bio.
