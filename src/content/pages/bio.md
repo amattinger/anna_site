@@ -12,16 +12,14 @@ featuredimage: /img/SelfTdaddyGlass.jpg
 
 All the major threads of my life have traced an odyssean circle.
 
-In my teens, drawn to physics, anthropology, linguistics, and so on—stunted, upon graduation, by the paradox of choice—I decided to take six months to clear my head in the backcountry of Kings Canyon National Park, building segments of the Pacific Crest Trail at 13,000 feet. After that, I figured, I'd think about a vocation.
+As a teenager, I absconded to a six-month job in the backcountry of Kings Canyon National Park, building segments of the Pacific Crest Trail at 13,000 feet. I figured I'd think about a vocation afterward. 
 
-That six months turned into a decade.
+That six months turned into a decade. Through trial by fire, I gigged and apprenticed my way around the world. Among other things, I've been a ski instructor, masseuse, pyrotechnician, farmhand, heavy machinery operator, tech evangelist, writer, and drystone mason—but modeling was my mainstay.
 
-I freelanced my way around the world. I'd do seasonal gigs [as a ski instructor, bodyworker, farmhand, pyrotechnician, drystone mason] and one-offs [as a tech evangelist, beet piler, writer, heavy machinery operator]—but modeling was my mainstay.
+Photography was a fixture in my life from the beginning: before I set off around the world, I shot black and white film that I developed in a community college darkroom as a private adolescent obsession. As a model, I got to watch the creative processes of countless photographers from the other side of the lens while I posed atop double-decker buses in Hong Kong, in ornate bat-infested ruins outside Havana, in frigid waves off the shores of Hobart.
 
-Once or twice a year, I'd plan a whirlwind tour where, for a few months, I'd get all my solitude and much of my sleep in airports and train stations. I posed atop double-decker buses in Hong Kong, in ornate bat-infested ruins outside Havana, in the waves near Hobart. From the other side of the lens, I watched the creative processes of thousands of photographers, honing my aesthetic discernment over time.
+When lockdown grounded everything, I circled around to formal study for the first time, enrolling in online community college before transferring to Stanford University to study Computer Science. Meanwhile, a photographer I admired offered me a sponsored seat in her digital portraiture course. Not long after, an old friend asked if she could hire me for an intimate maternity session. That cracked something open. I loved every part of that shoot: the logistics, the anticipatory brainstorming, the dynamism of side-stepping both inclement weather and a citywide power outage, the honor of being entrusted with such an intimate and celebratory moment, the technical experimentation. 
 
-Eventually I circled back to formal study, enrolling in online community college STEM courses before transferring to Stanford to study Computer Science. But while interviewing for tech jobs as a new grad, a friend asked me to photograph her maternity session. That job—the before, during, and after; the logistics, the dynamism, the experimentation, the celebratory intimacy—felt alive and fulfilling in a way few things have.
+For years, for fear of ``ruining" a beloved mode of expression, I'd assumed I loved photography too much to risk doing it for money. Turns out I loved it too much not to.
 
-Before that shoot, I'd always assumed I love photography too much to risk doing it for money. Turns out I love it too much not to.
-
-Drawn to the luxuriantly feral, experiential, conceptual, and human. Based in San Francisco; available for projects worldwide.
+Drawn to the luxuriantly feral, experiential, conceptual, and human. Based in San Francisco; available worldwide.

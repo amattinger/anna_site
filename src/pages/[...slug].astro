@@ -3,47 +3,37 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Page from "../templates/Page.astro";
 import Contact from "../templates/Contact.astro";
 import List from "../templates/List.astro";
-import { WORK_ORDER } from "../data/work-order";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
-
-  const workEntries = await getCollection("work");
-  type SortableEntry = CollectionEntry<"work">;
-  // Order and filter by src/data/work-order.ts (reorder or remove slugs there)
-  const orderMap = new Map(WORK_ORDER.map((slug, i) => [slug, i]));
-  const sortedWork = workEntries
-    .filter((e) => orderMap.has(e.slug))
-    .sort((a, b) => (orderMap.get(a.slug) ?? 9999) - (orderMap.get(b.slug) ?? 9999));
-
   return pages
     .filter((entry) => entry.slug !== "index" && entry.slug !== "news" && entry.slug !== "sold")
     .map((entry) => {
-      let props = { entry };
-      let items: SortableEntry[] = [];
-      let baseSlug = "";
-
-      if (entry.data.templateKey === "work-page") {
-        items = sortedWork;
-        baseSlug = "work";
-      }
-
+      const props = {
+        entry,
+        items: [] as CollectionEntry<"work">[],
+        baseSlug: entry.data.templateKey === "work-page" ? "work" : "",
+      };
       return {
         params: { slug: entry.slug === "index" ? undefined : entry.slug },
-        // If slug is 'index', it creates undefined path, which matches root '/'.
-        // BUT we have src/pages/index.astro, which takes precedence.
-        // So this route will NOT handle root.
-        // Wait, getStaticPaths params: { slug: undefined } works for [...slug] to match root?
-        // Yes, but index.astro (file) > [...slug].astro (dynamic).
-        // So it's safe.
-        // For 'bio', slug is 'bio'.
-        props: { ...props, items, baseSlug },
+        props,
       };
     });
 }
 
-const { entry, items, baseSlug } = Astro.props;
+const { entry, items: _pathItems, baseSlug } = Astro.props;
 const templateKey = entry.data.templateKey;
+
+// Work list is computed at render time so work-order.ts changes show up immediately (dev and build)
+let items = _pathItems;
+if (templateKey === "work-page") {
+  const { WORK_ORDER } = await import("../data/work-order.ts");
+  const workEntries = await getCollection("work");
+  const orderMap = new Map(WORK_ORDER.map((slug, i) => [slug, i]));
+  items = workEntries
+    .filter((e) => orderMap.has(e.slug))
+    .sort((a, b) => (orderMap.get(a.slug) ?? 9999) - (orderMap.get(b.slug) ?? 9999));
+}
 ---
 
 {
