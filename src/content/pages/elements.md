@@ -2,7 +2,7 @@
 templateKey: elements
 title: Clay Astro
 image: /img/SelfTdaddyGlass.jpg
-description: A stunning Astro theme designed for captivating image-centric websites, perfect for photographers, portfolios, and blogs.
+description: Anna Mattinger - San Francisco based conceptual photographer - boudoir, portrait, maternity, fine art
 thumbnail: /img/SelfTdaddyGlass.jpg
 heading: Main Heading
 subheading: Sub HEading

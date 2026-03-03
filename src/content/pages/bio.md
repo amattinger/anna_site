@@ -3,7 +3,7 @@ templateKey: bio-page
 thumbnail: /img/SelfTdaddyGlass.jpg
 date: 2023-03-02T10:17:05.133Z
 title: Bio
-description: About the Artist
+description: Anna Mattinger - San Francisco based conceptual photographer - boudoir, portrait, maternity, fine art
 number: 1
 pagetype:
   - main
