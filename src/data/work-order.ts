@@ -15,6 +15,7 @@ export const WORK_ORDER: string[] = [
   'adam-oakland-masc',
   'monica-dolores-yellow',
   'kina-cello',
+  'columbarium-blue',
 
   'ash-dolores',
   'alex-blue-sultry',
@@ -44,6 +45,7 @@ export const WORK_ORDER: string[] = [
   'ingrid-lightpaint-flowers',
   'jimmy-scapula',
   'cameron-stanford-curtain',
+  'columbarium-20',
 
   'liv-hardlight',
   'carlotta-basement2',
@@ -70,7 +72,7 @@ export const WORK_ORDER: string[] = [
   'liv-dolores-flowers',
   'adam-oakland-drag',
   'jessamyn-l-a-sparkles',
-  
+
   'self-party-like-its2020',
   'lindsay-hillside-blue1',
   'jimmy-espanola-high-tide',

@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Page from "../templates/Page.astro";
 import Contact from "../templates/Contact.astro";
 import List from "../templates/List.astro";
+import Events from "../templates/Events.astro";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
@@ -41,6 +42,8 @@ if (templateKey === "work-page") {
     <Contact entry={entry} />
   ) : templateKey === "work-page" ? (
     <List entry={entry} items={items} baseSlug={baseSlug} />
+  ) : templateKey === "events-page" ? (
+    <Events entry={entry} />
   ) : (
     <Page entry={entry} />
   )

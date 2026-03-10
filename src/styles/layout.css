@@ -202,6 +202,62 @@ footer.site-foot a {
     vertical-align: middle;
 }
 
+/* Work dropdown: Portraits + Events */
+.nav-dropdown {
+    position: relative;
+}
+.nav-dropdown-trigger {
+    display: block;
+    padding: 10px 12px;
+    color: var(--color-base);
+    font-family: var(--font-sans-serif);
+    font-weight: 400;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.nav-dropdown:hover .nav-dropdown-trigger {
+    opacity: 1;
+}
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 140px;
+    display: none;
+    z-index: 1000;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+}
+.nav-dropdown-menu li {
+    display: block;
+}
+.nav-dropdown-menu a {
+    display: block;
+    padding: 8px 1rem;
+    color: var(--color-base);
+    font-family: var(--font-sans-serif);
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    opacity: 0.8;
+}
+.nav-dropdown-menu a:hover {
+    opacity: 1;
+    background: color(var(--color-base) alpha(0.06));
+}
+
 .site-head-center {
     position: absolute;
     display: flex;
@@ -364,6 +420,17 @@ footer.site-foot a {
     }
     .site-head-open .nav-current a {
         border-bottom: var(--color-base) 2px solid;
+    }
+    .site-head-open .nav-dropdown-menu {
+        position: static;
+        display: block;
+        box-shadow: none;
+        border: none;
+        padding-left: 1rem;
+        margin-top: 0.25rem;
+    }
+    .site-head-open .nav-dropdown-menu a {
+        padding: 6px 0;
     }
     .site-head-open .site-head-right a {
         opacity: 0.5;

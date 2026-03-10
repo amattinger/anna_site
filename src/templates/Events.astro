@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { type CollectionEntry } from 'astro:content';
+import { EVENTS_IMAGES } from '../data/events-images';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { title, description } = entry.data;
+---
+
+<Layout title={title} description={description}>
+  <article class="events-page post-content">
+    <header class="post-content-header">
+      <h1 class="post-content-title">{title}</h1>
+      {description && <p class="post-content-excerpt">{description}</p>}
+    </header>
+
+    <h2 class="events-carousel-title">Lunar New Year '26 @ Moongate Lounge — SF Chamber of Commerce & Alaska Airlines</h2>
+
+    <div class="events-carousel-wrapper">
+      <button type="button" class="events-carousel-prev" aria-label="Previous image">‹</button>
+      <div class="events-carousel" id="events-carousel">
+        <div class="events-carousel-track">
+          {EVENTS_IMAGES.map((src, i) => (
+            <div class="events-carousel-slide">
+              <img
+                src={src}
+                alt={`Event photo ${i + 1}`}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchpriority={i === 0 ? 'high' : undefined}
+                width={1200}
+                height={675}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button type="button" class="events-carousel-next" aria-label="Next image">›</button>
+    </div>
+    <div class="events-carousel-thumbs" id="events-carousel-thumbs" role="tablist" aria-label="Carousel navigation">
+      {EVENTS_IMAGES.map((src, i) => (
+        <button type="button" class="events-thumb" role="tab" aria-label={`Go to image ${i + 1}`} aria-selected={i === 0} data-index={i}>
+          <img src={src} alt="" loading="lazy" decoding="async" width={64} height={64} />
+        </button>
+      ))}
+    </div>
+  </article>
+</Layout>
+
+<script>
+  (function () {
+    const carousel = document.getElementById('events-carousel');
+    const track = carousel?.querySelector('.events-carousel-track');
+    const prevBtn = document.querySelector('.events-carousel-prev');
+    const nextBtn = document.querySelector('.events-carousel-next');
+    const thumbsEl = document.getElementById('events-carousel-thumbs');
+    if (!carousel || !track) return;
+
+    const slides = track.querySelectorAll('.events-carousel-slide');
+    const thumbs = thumbsEl?.querySelectorAll('.events-thumb');
+    const total = slides.length;
+    let index = 0;
+
+    function scrollTo(i) {
+      index = Math.max(0, Math.min(i, total - 1));
+      const slide = slides[index];
+      if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      updateThumbs();
+    }
+
+    function updateThumbs() {
+      thumbs?.forEach((btn, i) => {
+        btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => scrollTo(index - 1));
+    nextBtn?.addEventListener('click', () => scrollTo(index + 1));
+    thumbs?.forEach((btn, i) => {
+      btn.addEventListener('click', () => scrollTo(i));
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const slideIndex = Array.from(slides).indexOf(e.target);
+          if (e.isIntersecting && slideIndex >= 0) index = slideIndex;
+        });
+        updateThumbs();
+      },
+      { root: carousel, threshold: 0.5 }
+    );
+    slides.forEach((s) => observer.observe(s));
+  })();
+</script>
+
+<style>
+  /* Override .post-content max-width; break out of wrapper padding so carousel uses almost full page width */
+  .events-page.post-content {
+    max-width: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media (min-width: 851px) {
+    .events-page.post-content {
+      margin-left: -3vw;
+      margin-right: -3vw;
+      width: calc(100% + 6vw);
+    }
+  }
+  @media (max-width: 850px) {
+    .events-page.post-content {
+      margin-left: -6vw;
+      margin-right: -6vw;
+      width: calc(100% + 12vw);
+    }
+  }
+  .events-page .post-content-header {
+    margin-bottom: 2rem;
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  .events-carousel-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0 0 1.5rem;
+    padding: 0 3vw;
+    line-height: 1.35;
+  }
+  /* Embedded box: nearly full width of viewport */
+  .events-carousel-wrapper {
+    position: relative;
+    width: 94%;
+    max-width: none;
+    margin: 0 auto 2rem;
+    /* Fixed-size box so portrait images don't make it taller; landscape not cropped */
+    aspect-ratio: 16 / 9;
+    max-height: 70vh;
+    background: color(var(--color-base) alpha(0.06));
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .events-carousel {
+    position: absolute;
+    inset: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .events-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .events-carousel-track {
+    display: flex;
+    height: 100%;
+    width: max-content;
+  }
+  .events-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  /* Contain: no crop; landscape fits in box, portrait fits in same box height with side letterboxing */
+  .events-carousel-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .events-carousel-prev,
+  .events-carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-bg);
+    color: var(--color-base);
+    font-size: 2.4rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.85;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: opacity 0.2s;
+  }
+  .events-carousel-prev:hover,
+  .events-carousel-next:hover {
+    opacity: 1;
+  }
+  .events-carousel-prev {
+    left: 0.5rem;
+  }
+  .events-carousel-next {
+    right: 0.5rem;
+  }
+  /* Thumbnails: single row, nearly full width to match carousel */
+  .events-carousel-thumbs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin-top: 0.75rem;
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+  .events-thumb {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 64px;
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    background: color(var(--color-base) alpha(0.08));
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+  .events-thumb:hover {
+    opacity: 0.9;
+  }
+  .events-thumb[aria-selected="true"] {
+    border-color: var(--color-base);
+    opacity: 1;
+  }
+  .events-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
