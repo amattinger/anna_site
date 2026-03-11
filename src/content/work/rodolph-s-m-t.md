@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/RodolphSMT.jpg
+thumbnail: /img/RodolphSMT.webp
 date: 2026-02-23T20:06:01.199Z
 title: Rodolph S M T
 description: Photography portfolio work.

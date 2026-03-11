@@ -1,10 +1,10 @@
 ---
 templateKey: elements
 title: Clay Astro
-image: /img/SelfTdaddyGlass.jpg
+image: /img/SelfTdaddyGlass.webp
 description: Anna Mattinger - San Francisco based conceptual photographer - boudoir, portrait, maternity, fine art
-thumbnail: /img/SelfTdaddyGlass.jpg
+thumbnail: /img/SelfTdaddyGlass.webp
 heading: Main Heading
 subheading: Sub HEading
-featuredimage: /img/SelfTdaddyGlass.jpg
+featuredimage: /img/SelfTdaddyGlass.webp
 ---

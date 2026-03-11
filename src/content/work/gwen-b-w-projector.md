@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/GwenBWProjector.jpg
+thumbnail: /img/GwenBWProjector.webp
 date: 2026-02-23T20:06:01.199Z
 title: Gwen B W Projector
 description: Photography portfolio work.

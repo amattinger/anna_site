@@ -1,13 +1,13 @@
 ---
 templateKey: bio-page
-thumbnail: /img/SelfTdaddyGlass.jpg
+thumbnail: /img/SelfTdaddyGlass.webp
 date: 2023-03-02T10:17:05.133Z
 title: Bio
 description: Anna Mattinger - San Francisco based conceptual photographer - boudoir, portrait, maternity, fine art
 number: 1
 pagetype:
   - main
-featuredimage: /img/SelfTdaddyGlass.jpg
+featuredimage: /img/SelfTdaddyGlass.webp
 ---
 
 All the major threads of my life have traced an odyssean circle.

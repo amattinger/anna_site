@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/CynthiaDianthus.jpg
+thumbnail: /img/CynthiaDianthus.webp
 date: 2026-02-23T20:06:01.199Z
 title: Cynthia Dianthus
 description: Photography portfolio work.

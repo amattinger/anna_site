@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/JimmyEspanolaBW.jpg
+thumbnail: /img/JimmyEspanolaBW.webp
 date: 2026-02-23T20:06:01.199Z
 title: Jimmy Espanola B W
 description: Photography portfolio work.

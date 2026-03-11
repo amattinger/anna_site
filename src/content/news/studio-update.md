@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-thumbnail: /img/SelfTdaddyGlass.jpg
+thumbnail: /img/SelfTdaddyGlass.webp
 date: 2023-01-04T15:04:10.000Z
 title: Studio Update
 description: Notes from the kiln and upcoming projects.

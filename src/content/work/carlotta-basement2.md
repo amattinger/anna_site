@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/CarlottaBasement2.jpg
+thumbnail: /img/CarlottaBasement2.webp
 date: 2026-02-23T20:06:01.199Z
 title: Carlotta Basement2
 description: Photography portfolio work.

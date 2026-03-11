@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/AyaMaggots.jpg
+thumbnail: /img/AyaMaggots.webp
 date: 2026-02-23T20:06:01.199Z
 title: Aya Maggots
 description: Photography portfolio work.

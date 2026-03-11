@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/AdamOaklandDrag.jpg
+thumbnail: /img/AdamOaklandDrag.webp
 date: 2026-02-23T20:06:01.199Z
 title: Adam Oakland Drag
 description: Photography portfolio work.

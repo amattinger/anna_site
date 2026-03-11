@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/AlexBlueSultry.jpg
+thumbnail: /img/AlexBlueSultry.webp
 date: 2026-02-23T20:06:01.199Z
 title: Alex Blue Sultry
 description: Photography portfolio work.

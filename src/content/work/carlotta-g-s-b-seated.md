@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/CarlottaGSBSeated.jpg
+thumbnail: /img/CarlottaGSBSeated.webp
 date: 2026-02-23T20:06:01.199Z
 title: Carlotta G S B Seated
 description: Photography portfolio work.

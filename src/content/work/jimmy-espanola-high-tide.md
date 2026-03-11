@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/JimmyEspanolaHighTide.jpg
+thumbnail: /img/JimmyEspanolaHighTide.webp
 date: 2026-02-23T20:06:01.199Z
 title: Jimmy Espanola High Tide
 description: Photography portfolio work.

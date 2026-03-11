@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/CameronStanfordCurtain.jpg
+thumbnail: /img/CameronStanfordCurtain.webp
 date: 2026-02-23T20:06:01.199Z
 title: Cameron Stanford Curtain
 description: Photography portfolio work.

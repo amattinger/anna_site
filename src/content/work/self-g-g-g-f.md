@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/SelfGGGF.jpg
+thumbnail: /img/SelfGGGF.webp
 date: 2026-02-23T20:06:01.199Z
 title: Self G G G F
 description: Photography portfolio work.

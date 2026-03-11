@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/CameronBWCK.jpg
+thumbnail: /img/CameronBWCK.webp
 date: 2026-02-23T20:06:01.199Z
 title: Cameron B W C K
 description: Photography portfolio work.

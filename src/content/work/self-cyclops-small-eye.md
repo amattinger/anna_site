@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/SelfCyclopsSmallEye.jpg
+thumbnail: /img/SelfCyclopsSmallEye.webp
 date: 2026-02-23T20:06:01.199Z
 title: Self Cyclops Small Eye
 description: Photography portfolio work.

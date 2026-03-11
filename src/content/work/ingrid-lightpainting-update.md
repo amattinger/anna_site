@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/IngridLightpaintingUpdate.png
+thumbnail: /img/IngridLightpaintingUpdate.webp
 date: 2026-02-23T20:06:01.199Z
 title: Ingrid Lightpainting Update
 description: Photography portfolio work.

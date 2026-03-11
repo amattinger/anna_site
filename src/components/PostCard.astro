@@ -15,7 +15,9 @@ const isLarge = count % 3 === 0;
 const positionStyle = imagePosition
   ? ` background-position: ${imagePosition}; background-size: cover;`
   : '';
-const bgStyle = thumbnail
+// For work/Portraits grid (`noLink` = true), avoid using a CSS background image so we don't
+// download each image twice. Only use the background style on linked cards (e.g. homepage).
+const bgStyle = !noLink && thumbnail
   ? `background-image: url(${thumbnail});${positionStyle}`
   : '';
 const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? 'with-image' : 'no-image'} ${noLink ? 'no-link' : ''} post`;
@@ -24,7 +26,15 @@ const postClass = `post-card ${isLarge ? 'post-card-large' : ''} ${thumbnail ? '
 <article class={postClass} style={bgStyle}>
   {noLink ? (
     <div class="post-card-wrapper">
-      {thumbnail && <img src={thumbnail} alt={title} class="post-card-image" />}
+      {thumbnail && (
+        <img
+          src={thumbnail}
+          alt={title}
+          class="post-card-image"
+          loading={count <= 6 ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      )}
     </div>
   ) : (
     <a href={`/${slug}`} class="post-card-link">

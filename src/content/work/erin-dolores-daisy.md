@@ -1,6 +1,6 @@
 ---
 templateKey: work-sub-page
-thumbnail: /img/ErinDoloresDaisy.jpg
+thumbnail: /img/ErinDoloresDaisy.webp
 date: 2026-02-23T20:06:01.199Z
 title: Erin Dolores Daisy
 description: Photography portfolio work.
