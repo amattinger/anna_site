@@ -1,8 +1,10 @@
 /**
- * Work page order and visibility.
- * - Order: list slugs in the order you want them on the Work page (first = top).
- * - Remove: delete a slug from the array to hide that piece from the Work page.
- * - Add: add the slug of a new work entry (same as its .md filename without .md).
+ * Portraits (Work) page — order and visibility.
+ * - Order: list slugs in the order you want on /work (first = top).
+ * - Remove: delete a slug to hide it from Portraits only.
+ * - Add: slug = filename in src/content/work/ without .md
+ * - For nude / boudoir / fine-art pieces, use boudoir-fine-art-order.ts instead
+ *   and remove those slugs from here so each piece appears on only one gallery.
  */
 export const WORK_ORDER: string[] = [
   'cameron-b-w-c-k',
@@ -73,18 +75,18 @@ export const WORK_ORDER: string[] = [
   'adam-oakland-drag',
   'jessamyn-l-a-sparkles',
 
-  'self-party-like-its2020',
+  //'self-party-like-its2020',
   'lindsay-hillside-blue1',
   'jimmy-espanola-high-tide',
   'aya-maggots',
   'monica-blue-update',
   'pillow-queens-greenroom',
   'self-cyclops-small-eye',
-  'self-sumana-back',
-  'self-sumana-front',
-  'gwen-b-w-projector',
+ // 'self-sumana-back',
+ // 'self-sumana-front',
+ // 'gwen-b-w-projector',
   'waldo-tdaddy',
-  'theresa-dolores',
+  //'theresa-dolores',
   'athena-purple',
 
  // 'sura-s-f',

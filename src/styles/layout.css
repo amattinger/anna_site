@@ -202,7 +202,7 @@ footer.site-foot a {
     vertical-align: middle;
 }
 
-/* Work dropdown: Portraits + Events */
+/* Work dropdown: Portraits, Boudoir & Fine Art, Events */
 .nav-dropdown {
     position: relative;
 }
@@ -233,7 +233,9 @@ footer.site-foot a {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    min-width: 140px;
+    min-width: min(100vw - 2rem, 22rem);
+    width: max-content;
+    max-width: calc(100vw - 2rem);
     display: none;
     z-index: 1000;
 }

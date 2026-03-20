@@ -50,9 +50,11 @@ let postCounter = 0;
                 ? 'center 28%'
                 : post.slug === 'work'
                   ? 'center 35%'
-                  : post.slug === 'contact'
-                    ? 'center 22%'
-                    : undefined;
+                  : post.slug === 'boudoir-fine-art'
+                    ? 'center 40%'
+                    : post.slug === 'contact'
+                      ? 'center 22%'
+                      : undefined;
 
             // Legacy slug split logic:
             // src/pages/bio/index.md -> /bio.

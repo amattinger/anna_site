@@ -14,12 +14,16 @@ const { Content } = await entry.render();
 
 const { title, description, thumbnail } = entry.data;
 
+/** Masonry gallery (no card links): Portraits + Boudoir & Fine Art */
+const isWorkGallery =
+  baseSlug === 'work' || baseSlug === 'boudoir-fine-art';
+
 let postCounter = 0;
 ---
 
 <Layout title={title} description={description}>
-    <div class={baseSlug === 'work' ? 'work-page-wrapper' : ''}>
-    {description && baseSlug !== 'work' && (
+    <div class={isWorkGallery ? 'work-page-wrapper' : ''}>
+    {description && !isWorkGallery && (
       <header class="page-head">
         <h2 class="page-head-title">
           {description}
@@ -30,7 +34,7 @@ let postCounter = 0;
     {/* Content from the index markdown (if any, though legacy work-page didn't show it, only description).
         But generic List might want it. */}
 
-    <div class={`post-feed ${baseSlug === 'work' ? 'post-feed-work' : ''}`}>
+    <div class={`post-feed ${isWorkGallery ? 'post-feed-work' : ''}`}>
         {items.map((post) => {
             postCounter++;
             return (
@@ -38,7 +42,7 @@ let postCounter = 0;
                     count={postCounter}
                     post={post}
                     slug={baseSlug ? `${baseSlug}/${post.slug}` : post.slug}
-                    noLink={baseSlug === 'work'}
+                    noLink={isWorkGallery}
                 />
             );
         })}
