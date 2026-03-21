@@ -5,25 +5,32 @@
  * - Remove slugs from work-order.ts for pieces that appear here only.
  */
 export const BOUDOIR_FINE_ART_ORDER: string[] = [
-  'self-cyclops',
+  'liv-hardlight',
   'hayden-red',
   'gwen-yosemite-house',
-  'monica-blue-update',
-  'cameron-stanford-curtain',
-  'theresa-dolores',
-  'erin-benjamin-lightpaint',
   'self-sumana-back',
+  'cameron-stanford-curtain',
+  'monica-dolores-harness',
+
+
+  
+  'self-cyclops',
+  'monica-blue-update',
+
   'jimmy-scapula',
   'erin-benjamin-beanbag',
   'self-sumana-front',
   'monica-dolores-yellow',
-  'cameron-vines',
-  'kina-cello',
+  'theresa-dolores',
+  
   'gwen-b-w-projector',
+  'kina-cello',
+  'cameron-vines',
+
   'carlotta-lingerie',
   'self-party-like-its2020',
-  'monica-dolores-harness',
+
   'ash-dolores',
-  'liv-hardlight',
+  'erin-benjamin-lightpaint',
   'reclined-bodyscape',
 ];
